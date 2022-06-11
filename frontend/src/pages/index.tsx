@@ -1,6 +1,13 @@
 import type { NextPage } from 'next'
 import { useCallback } from 'react'
-import { Button, useToast, chakra, Input } from '@chakra-ui/react'
+import {
+  Button,
+  useToast,
+  chakra,
+  Input,
+  HStack,
+  Heading,
+} from '@chakra-ui/react'
 import { Template } from '@/components/templates'
 import { useObjects } from '@/services'
 import { useSeo } from '@/lib/seo'
@@ -63,7 +70,13 @@ const Index: NextPage = () => {
     <Template>
       <DefaultSeo />
       <NextSeo />
-      <chakra.div w='full' h={350}>
+      <chakra.div
+        w='full'
+        h={350}
+        border='1px solid #3f444e'
+        borderRadius={8}
+        mb={10}
+      >
         <Canvas>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
@@ -83,29 +96,33 @@ const Index: NextPage = () => {
             </>
           ) : null}
         </Canvas>
-
-        <chakra.form onSubmit={handleSubmit(onSubmit)}>
-          <Input {...register('name')} />
-          <Input {...register('scale_x')} />
-          <Input {...register('scale_y')} />
-          <Input {...register('scale_z')} />
-          <Input {...register('pos_x')} />
-          <Input {...register('pos_y')} />
-          <Input {...register('pos_z')} />
-          <Button type='submit'>Add Objects</Button>
-        </chakra.form>
-        {error &&
-          toast({
-            title: 'Error!',
-            description: '通信エラーが発生しました',
-            status: 'error',
-            duration: 9000,
-            isClosable: true,
-          })}
-        <Button variant='contained' onClick={onMutate}>
-          update
-        </Button>
       </chakra.div>
+
+      <Heading as='h2' fontSize={20} mb={10}>
+        3D Objects into Database App.
+      </Heading>
+      <chakra.form onSubmit={handleSubmit(onSubmit)}>
+        <HStack>
+          <Input w={100} {...register('name')} placeholder='name' />
+          <Input w={100} {...register('scale_x')} placeholder='scale_x' />
+          <Input w={100} {...register('scale_y')} placeholder='scale_y' />
+          <Input w={100} {...register('scale_z')} placeholder='scale_z' />
+          <Input w={100} {...register('pos_x')} placeholder='pos_x' />
+          <Input w={100} {...register('pos_y')} placeholder='pos_y' />
+          <Input w={100} {...register('pos_z')} placeholder='pos_z' />
+          <Button w={100} h='40px' py={0} px='10px' fontSize={14} type='submit'>
+            Add Objects
+          </Button>
+        </HStack>
+      </chakra.form>
+      {error &&
+        toast({
+          title: 'Error!',
+          description: '通信エラーが発生しました',
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        })}
     </Template>
   )
 }
