@@ -1,5 +1,6 @@
 import mysql from 'mysql'
 import { MYSQL_HOST, MYSQL_ROOT_PASSWORD, MYSQL_ROOT_USER } from '@/lib/env'
+import { Axis } from '@/types'
 
 export class DataBase {
   private connection: mysql.Connection
@@ -12,25 +13,37 @@ export class DataBase {
     })
   }
 
-  public getUserList(): Promise<{ id: number; name: string }[]> {
+  public getObjectList(): Promise<{ id: number; name: string }[]> {
     return new Promise((resolve) => {
-      this.connection.query(`use example_db`)
-      this.connection.query('SELECT * FROM user;', (error, results) => {
+      this.connection.query(`use objects`)
+      this.connection.query('SELECT * FROM boxies;', (error, results) => {
         if (error) throw error
         resolve(results)
       })
     })
   }
 
-  public addUser({
+  public addObject({
     name,
+    scale_x,
+    scale_y,
+    scale_z,
+    pos_x,
+    pos_y,
+    pos_z,
   }: {
     name: string
+    scale_x: number
+    scale_y: number
+    scale_z: number
+    pos_x: number
+    pos_y: number
+    pos_z: number
   }): Promise<{ status: number; message: string }> {
     return new Promise((resolve) => {
-      this.connection.query(`use example_db`)
+      this.connection.query(`use objects`)
       this.connection.query(
-        `insert into user (name) values ("${name}");`,
+        `insert into boxies (name, scale_x, scale_y, scale_z, pos_x, pos_y, pos_z) values ("${name}", ${scale_x}, ${scale_y}, ${scale_z}, ${pos_x}, ${pos_y}, ${pos_z});`,
         (error) => {
           if (error) resolve({ status: 400, message: 'エラー' })
           resolve({ status: 200, message: 'ユーザーを追加しました' })
@@ -39,21 +52,21 @@ export class DataBase {
     })
   }
 
-  public deleteUser({
+  public deleteObject({
     id,
   }: {
     id: number
   }): Promise<{ status: number; message: string }> {
     return new Promise((resolve) => {
-      this.connection.query(`use example_db`)
-      this.connection.query(`delete from user where id = ${id};`, (error) => {
+      this.connection.query(`use objects`)
+      this.connection.query(`delete from boxies where id = ${id};`, (error) => {
         if (error) resolve({ status: 400, message: 'エラー' })
         resolve({ status: 200, message: `ユーザーID : ${id} を削除しました` })
       })
     })
   }
 
-  public updateUser({
+  public updateObject({
     id,
     updateName,
   }: {
@@ -61,9 +74,9 @@ export class DataBase {
     updateName: string
   }): Promise<{ status: number; message: string }> {
     return new Promise((resolve) => {
-      this.connection.query(`use example_db`)
+      this.connection.query(`use objects`)
       this.connection.query(
-        `update user set name = "${updateName}" where id = ${id};`,
+        `update boxies set name = "${updateName}" where id = ${id};`,
         (error) => {
           if (error) resolve({ status: 400, message: 'エラー' })
           resolve({ status: 200, message: `ユーザーを更新しました` })

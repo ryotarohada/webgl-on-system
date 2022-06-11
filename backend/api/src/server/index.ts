@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import userRouter from './routes/user'
+import objectsRouter from './routes/objects'
 import { PORT } from '@/lib/env'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
@@ -32,6 +32,6 @@ export const listenOnServer = () => {
     swaggerUi.serve,
     swaggerUi.setup(swaggerJSDoc(swaggerOptions)),
   )
-  app.use('/api/user', userRouter)
+  app.use('/api/objects', objectsRouter)
   app.listen(PORT)
 }

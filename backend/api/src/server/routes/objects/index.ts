@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import {
-  addUserController,
-  deleteUserController,
-  updateUserController,
-  getUserController,
+  addObjectController,
+  deleteObjectController,
+  updateObjectController,
+  getObjectController,
 } from './controller'
 
 const router = Router()
@@ -23,7 +23,7 @@ const router = Router()
  *     produces:
  *       - application/json
  */
-router.post('/add', addUserController)
+router.post('/add', addObjectController)
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.post('/add', addUserController)
  *     produces:
  *       - application/json
  */
-router.post('/delete', deleteUserController)
+router.post('/delete', deleteObjectController)
 
 /**
  * @swagger
@@ -43,7 +43,7 @@ router.post('/delete', deleteUserController)
  *     produces:
  *       - application/json
  */
-router.post('/update', updateUserController)
+router.post('/update', updateObjectController)
 
 /**
  * @swagger
@@ -53,6 +53,6 @@ router.post('/update', updateUserController)
  *     produces:
  *       - application/json
  */
-router.get('/list', getUserController)
+router.get('/list', getObjectController)
 
 export default router

@@ -1,1 +1,1 @@
-export { useFetchUsers } from '@/services/user'
+export { useObjects } from '@/services/objects'
