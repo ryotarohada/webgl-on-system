@@ -1,0 +1,80 @@
+{
+  "name": "boilerplate_next",
+  "version": "0.1.0",
+  "description": "Boilerplate_Next",
+  "engines": {
+    "node": ">=14.17.1",
+    "yarn": ">=1.22.5"
+  },
+  "volta": {
+    "node": "14.17.1",
+    "yarn": "1.22.5"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "scripts": {
+    "dev": "next dev -p 4000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "prettier": "prettier -w *.js '**/*.{js,ts,tsx,css}' --ignore-path .prettierignore",
+    "prettier:check": "prettier -c '*.js' '**/*.{js,ts,tsx,css}' --ignore-path .prettierignore",
+    "analyze": "ANALYZE=true yarn build",
+    "cb": "component-builder",
+    "storybook": "start-storybook -p 6006 -s ./public",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.9",
+    "@chakra-ui/icons": "^1.1.7",
+    "@chakra-ui/react": "^1.8.7",
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@fontsource/roboto": "^4.5.3",
+    "axios": "^0.27.2",
+    "framer-motion": "^6.2.9",
+    "graphql": "^16.3.0",
+    "next": "^12.0.7",
+    "next-seo": "^4.26.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hook-form": "^7.31.1",
+    "swr": "0.5.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.7",
+    "@component-builder/react": "^0.0.1",
+    "@next/bundle-analyzer": "^12.1.0",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
+    "@types/eslint": "^7.2.13",
+    "@types/node": "^15.12.5",
+    "@types/react": "17.0.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
+    "babel-loader": "^8.2.3",
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-next": "^11.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "msw": "^0.36.8",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2",
+    "storybook-dark-mode": "^1.0.9",
+    "ts-node": "^10.0.0",
+    "typescript": "4.3.5"
+  }
+}

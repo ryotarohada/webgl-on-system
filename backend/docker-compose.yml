@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  db:
+    build: ./db/
+    container_name: "example_db"
+    volumes:
+      - ./db/init:/docker-entrypoint-initdb.d
+      - ./db/mysql:/var/lib/mysql
+    env_file: .env
+    ports:
+      - "3306:3306"
+    networks:
+      - default
+    restart: always
+    environment:
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_ROOT_USER: $MYSQL_ROOT_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+  api:
+    build: ./api/
+    container_name: "example_api"
+    volumes:
+      - "./api:/usr/app"
+    env_file: .env
+    ports:
+      - "8080:8080"
+    networks:
+      - default
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: $MYSQL_HOST
+      MYSQL_ROOT_USER: $MYSQL_ROOT_USER
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+
+networks:
+  default:
