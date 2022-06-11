@@ -1,6 +1,4 @@
-# boilerplate_web-app
-
-Web App 開発用のテンプレート (front + api + db)
+# webgl-on-system
 
 フロントエンド & バックエンド で TypeScript を採用。
 
